@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<body style="background-image:url(images/back.jpg);background-size:cover;background-repeat:no-repeat;">
+<button style="font-size:22px;background:url(images/roll.jpg);background-size:cover;color:white;" onclick="roll()" >Roll</button>
+<button style="font-size:22px;background:url(images/roll.jpg);background-size:cover;color:white;" onclick="randomroll()">Random</button>
+<button style="font-size:22px;background:url(images/roll.jpg);background-size:cover;color:white;" onclick="Clear()">Clear</button>
+<br></br>
+<input onclick="Rselect(textNumR)" style="font-size:22px;background:url(images/text.jpg);background-size:cover;" id="NumR" type="text" value = "Number of Rolls"></input>
+<br></br>
+<input onclick="Rselect(textSideR)" style="font-size:22px;background:url(images/text.jpg);background-size:cover;" id="SideR" type="text" value = "Sides of Die"></input>
+<br></br>
+<input onclick="Rselect(textRepeat)" style="font-size:22px;background:url(images/text.jpg);background-size:cover;" id="Repeat" type="text" value = "Times to Repeat"></input>
+<br></br>
+<textarea style="font-size:21px;background:url(images/text.jpg);background-size:cover;" id="Results" rows="18" cols="21" type="text">Results</textarea>
+<br></br>
+<button style="width:280px;font-size:22px;background:url(images/roll.jpg);background-size:cover;color:white;" onclick="dono()" >Support <3</button>
+<script src="cordova.js"></script>
+<script>
+var textNumR = document.getElementById("NumR")
+var textSideR = document.getElementById("SideR")
+var textRepeat = document.getElementById("Repeat")
+var textResults = document.getElementById("Results")
+
+function Rselect(inputS) {
+	inputS.focus()
+	inputS.setSelectionRange(0,inputS.value.length)
+}
+
+function Clear() {
+	textNumR.value = "Number of Rolls"
+	textSideR.value = "Sides of Die"
+	textRepeat.value = "Times to Repeat"
+	textResults.value = "Results"
+	
+}
+
+function roll() {
+		var rand = 0
+		var total = 0
+		var low = 999999
+		var high = 0
+		var avr = 0
+		textResults.value = ""
+		if (isNaN(textNumR.value)==false && isNaN(textSideR.value)==false && isNaN(textRepeat.value)==false){
+			for(i=0; i<textRepeat.value; i++){
+				if(i>0){textResults.value = textResults.value+ "\n"}
+				for(ii=0; ii<textNumR.value;ii++){
+					rand=(Math.floor(Math.random()*textSideR.value)+1)
+					if (low > rand){low= rand}
+					if (high<rand){high=rand}
+					if (i==0 && ii==0){
+						avr=rand
+					}else{
+						avr=Math.floor((avr+rand)/2)
+					}
+					total += rand
+					textResults.value = textResults.value + rand
+					if (ii<textNumR.value-1){
+						textResults.value = textResults.value + "-"
+					}else{
+						textResults.value = textResults.value + "\n"
+					}
+				}
+			}
+			textResults.value = textResults.value + "\nHighest:" + high + "\nLowest:" + low +"\nAverage:"+ avr + "\nTotal:" + total
+			textResults.scrollTop = textResults.scrollHeight;
+		}
+}
+
+function randomroll() {
+	textNumR.value=Math.floor((Math.random()*100)+1)
+	console.log(textNumR.value)
+	textSideR.value=Math.floor((Math.random()*100)+1)
+	textRepeat.value=Math.floor((Math.random()*100)+1)
+	roll()
+}
+function dono() {
+window.open('https://www.paypal.me/vncbass7', '_blank')
+}
+</script>
+</body>
+</html>

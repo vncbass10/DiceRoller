@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "com.Nagasa.DiceRoller"
+    version     = "1.0.0" >
+
+<!-- versionCode is optional and Android only -->
+
+  <name>Dice Roller</name>
+
+  <description>
+      Simple Dice Roller
+  </description>
+
+  <author email="vncabss10@gmail.com">
+      Simply like it simple.
+  </author>
+  
+  <icon src="images/logo.png"></icon>
+  
+<plugin name="org.apache.cordova.InAppBrowser" spec="https://github.com/apache/cordova-plugin-inappbrowser.git#3.0.0"/>
+<gap:plugin name="phonegap-admob" source="npm"/>
+</widget>
+
+
